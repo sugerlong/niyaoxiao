@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	 <package name="back" namespace="/back" extends="struts-default">
+        <action name="index" class="backAction" method="index">
+        	<result name="success" type="freemarker">/htdoc/ftl/back/index/index.ftl</result>
+		</action>
+		<action name="login" class="backAction" method="login">
+		 	<result name="login" type="freemarker">/htdoc/ftl/back/login/login.html</result>
+        	<result name="success" type="freemarker">/htdoc/ftl/back/index/index.ftl</result>
+		</action>
+		<action name="vlogin" class="backAction" method="vlogin">
+		 	<result name="logout" type="freemarker">/htdoc/ftl/back/login/login.html</result>
+        	<result name="success" type="freemarker">/htdoc/ftl/back/index.html</result>
+        	<result name="logoutTest" type="redirectAction" >
+                <param name="actionName">login</param>
+        	</result>
+		</action>
+		<action name="logout" class="backAction" method="logout">
+        	<result name="success" type="freemarker">/htdoc/ftl/back/login/login.html</result>
+		</action>
+		<action name="queryUserList" class="backAction" method="queryUserList">
+        	<result name="success" type="freemarker">/htdoc/ftl/back/index.html</result>
+		</action>
+		
+		
+		
+		<!-- 文章相关开始 -->
+		<action name="toAddArticle" class="backAction" method="toAddArticle">
+        	<result name="success" type="freemarker">/htdoc/ftl/back/index/index-form.ftl</result>
+		</action>
+		<action name="addArticle" class="backAction" method="addArticle">
+        	<result name="success" type="freemarker">/htdoc/ftl/back/index/index-table.ftl</result>
+		</action>
+		<action name="toQueryArticleList" class="backAction" method="toQueryArticleList">
+        	<result name="success" type="freemarker">/htdoc/ftl/back/index/index-table.ftl</result>
+		</action>
+		<action name="queryArticleList" class="backAction" method="queryArticleList">
+        	<result name="success" type="freemarker">/htdoc/ftl/back/index/index-table.ftl</result>
+		</action>
+		
+		<!-- 文章相关结束-->
+		
+		
+		
+		
+		
+      </package>
+</struts>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>欢迎访问</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<style type="text/css">
+	.ui-input-text { margin:0.19em 0px;}
+</style>
+<body>
+	网站正在筹建中，敬请期待！！谢谢关注！
+	<select id="poolId"  style="width:220px">
+           <option value="">全部</option>
+           <#list userList as u>
+              <option value="${u.id}">${u.sname}</option>
+           </#list>
+	</select>
+</body>
+
+</html>

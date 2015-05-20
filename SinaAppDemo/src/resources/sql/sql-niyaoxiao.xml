@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="niyaoxiao" >
+	<typeAlias alias="userInfo" type="com.zxl.app.model.User_info"/>
+	<typeAlias alias="xiaoHuaAttachment" type="com.zxl.app.model.Xiao_Hua_Attachment"/>
+	<typeAlias alias="xiaoHua" type="com.zxl.app.model.Xiao_Hua"/>
+   	<typeAlias alias="xiaoHuaVo" type="com.zxl.app.vo.Xiao_Hua_Vo"/>
+   	
+    <select id="findUserInfo" resultClass="userInfo" parameterClass="userInfo">
+		select id,
+		sname,
+		account,
+		password,
+		email,
+		isAdmin,
+		cTime,
+		uTime,
+		status
+		from user_info
+		where id = #id#
+	</select>
+	<select id="findUserInfoList" resultClass="userInfo" parameterClass="userInfo">
+		select id,
+		sname,
+		account,
+		password,
+		email,
+		isAdmin,
+		cTime,
+		uTime,
+		status
+		from user_info
+		where 1=1
+		<isNotEmpty property="account" prepend="and">
+				account like concat('%',#account#,'%')
+		</isNotEmpty>
+		ORDER BY cTime DESC
+		limit #start#,#limit#
+	</select>
+	
+	
+	
+	
+	
+	<!-- 新增一条笑话 -->
+	<insert id="addXiaoHua" parameterClass="xiaoHua">
+		<![CDATA[
+			insert into xiao_hua
+			(
+				 title,
+		         fuTitle,
+	    		 content,
+	             cTime,
+	             status
+             )
+             VALUES
+             (
+				 #title#,
+		         #fuTitle#,
+	    		 #content#,
+	             sysdate(),
+				 1
+			 )
+		]]>
+	</insert>
+	 <select id="findXiaoHuaById" resultClass="xiaoHua" parameterClass="java.lang.Integer">
+		select id,
+		title,
+		fuTitle,
+		content,
+		cTime,
+		uTime,
+		status,
+		goodCount,
+		badCount
+		from xiao_hua
+		where id = #id#
+	</select>
+	
+	 <select id="findXiaoHuaList" resultClass="xiaoHua" parameterClass="xiaoHuaVo">
+		select id,
+		title,
+		fuTitle,
+		content,
+		cTime,
+		uTime,
+		status,
+		goodCount,
+		badCount
+		from xiao_hua
+		where 1=1
+		<isNotEmpty property="title" prepend="and">
+				title like concat('%',#title#,'%')
+		</isNotEmpty>
+		ORDER BY cTime DESC
+		limit #start#,#limit#
+	</select>
+	
+</sqlMap>

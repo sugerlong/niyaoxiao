@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<import resource="classpath:/resources/spring/resource/spring-datasource.xml" />
+	<import resource="classpath:/resources/spring/dao/spring-dao.xml" />
+	<import resource="classpath:/resources/spring/service/spring-service.xml" />
+	<import resource="classpath:/resources/spring/action/spring-action.xml" />
+</beans>

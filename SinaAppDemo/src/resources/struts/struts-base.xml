@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- Configuration for the base package. -->
+	<package name="base" extends="struts-default">
+		<result-types>
+			<result-type name="chain"
+				class="com.opensymphony.xwork2.ActionChainResult" />
+			<result-type name="dispatcher"
+				class="org.apache.struts2.dispatcher.ServletDispatcherResult" />
+			<result-type name="freemarker"
+				class="org.apache.struts2.views.freemarker.FreemarkerResult"
+				default="true" />
+			<result-type name="httpheader"
+				class="org.apache.struts2.dispatcher.HttpHeaderResult" />
+			<result-type name="redirect"
+				class="org.apache.struts2.dispatcher.ServletRedirectResult" />
+			<result-type name="redirectAction"
+				class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+			<result-type name="stream"
+				class="org.apache.struts2.dispatcher.StreamResult" />
+			<result-type name="velocity"
+				class="org.apache.struts2.dispatcher.VelocityResult" />
+			<result-type name="xslt"
+				class="org.apache.struts2.views.xslt.XSLTResult" />
+			<result-type name="plainText"
+				class="org.apache.struts2.dispatcher.PlainTextResult" />
+			<result-type name="redirect-action"
+				class="org.apache.struts2.dispatcher.ServletActionRedirectResult" />
+			<result-type name="plaintext"
+				class="org.apache.struts2.dispatcher.PlainTextResult" />
+			<result-type name="json" class="org.apache.struts2.json.JSONResult" />
+		</result-types>
+		<interceptors>
+			<interceptor name="loginInterceptor"
+				class="com.zxl.app.interceptor.LoginInterceptor">
+				<param name="excludeMethods">
+					login,logout,vlogin,index
+				</param>
+			</interceptor>
+			<interceptor name="jsonInterceptor" class="org.apache.struts2.json.JSONInterceptor" />
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="loginInterceptor" />
+				<interceptor-ref name="jsonInterceptor" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="loginStack" />
+		<global-results>
+			<result name="logout" type="freemarker">/function/login/logoutRedirect.ftl</result>
+		</global-results>
+	</package>
+
+</struts>
